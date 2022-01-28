@@ -7,6 +7,3 @@ run wget http://ja.wordpress.org/latest-ja.tar.gz -P /tmp/
 run tar zxvf /tmp/latest-ja.tar.gz -C /tmp
 run cp -r /tmp/wordpress/* /var/www/html/
 run chown apache:apache -R /var/www/html
-
-run systemctl enable httpd.service
-run systemctl start httpd.service
