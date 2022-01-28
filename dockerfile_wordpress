@@ -1,9 +1,20 @@
 FROM centos:7
 
-run yum -y update
-run yum -y install php httpd mysql php-mbstring php-xml
+RUN echo "now building ishikawa..."
 
-run wget http://ja.wordpress.org/latest-ja.tar.gz -P /tmp/
-run tar zxvf /tmp/latest-ja.tar.gz -C /tmp
-run cp -r /tmp/wordpress/* /var/www/html/
-run chown apache:apache -R /var/www/html
+RUN yum -y update
+RUN yum -y install php httpd mysql php-mbstring php-xml
+
+RUN yum -y install wget
+RUN wget http://ja.wordpress.org/latest-ja.tar.gz -P /tmp/
+
+WORKDIR /tmp
+RUN tar zxvf latest-ja.tar.gz
+RUN cp -r /tmp/wordpress/* /var/www/html/
+RUN chown apache:apache -R /var/www/html
+
+RUN echo "ServerName test:80" >> /etc/httpd/conf/httpd.conf
+
+EXPOSE 80
+
+CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
