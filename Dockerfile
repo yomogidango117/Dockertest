@@ -17,4 +17,4 @@ RUN echo "ServerName test:80" >> /etc/httpd/conf/httpd.conf
 
 EXPOSE 80
 
-CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
+CMD ["/usr/sbin/httpd", "-D", "-DFOREGROUND"]
